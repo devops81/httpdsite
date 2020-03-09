@@ -1,0 +1,15 @@
+#!/bin/bash
+
+yum update -y
+yum install -y httpd
+#!/bin/bash
+yum install httpd -y
+service httpd start
+chkconfig httpd on
+cd /var/www/html
+wget https://webmagicinformatica.s3.amazonaws.com/travel.zip
+unzip travel.zip
+chmod -R 777 *
+echo "Server is healthy" > /var/www/html/health.html
+systemctl start httpd
+systemctl enable httpd
